@@ -19,3 +19,15 @@ sudo chmod 666 /var/run/docker.sock
 # Install Git
 sudo DEBIAN_FRONTEND=noninteractive apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt install -y git
+
+# Install jq
+sudo apt-get update
+sudo apt-get install jq
+
+# Install conda
+mkdir -p ~/miniconda3 && 
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh && 
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3 && 
+rm ~/miniconda3/miniconda.sh && 
+source ~/miniconda3/bin/activate && 
+conda init --all &&
