@@ -21,8 +21,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt update -y
 sudo DEBIAN_FRONTEND=noninteractive apt install -y git
 
 # Install jq
-sudo apt-get update
-sudo apt-get install jq
+sudo DEBIAN_FRONTEND=noninteractive apt-get update -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y jq
 
 # Install conda
 mkdir -p ~/miniconda3
@@ -33,5 +33,5 @@ source ~/miniconda3/bin/activate
 conda init --all
 
 # Install gnome-terminal
-sudo apt update
-sudo apt install gnome-terminal
+sudo DEBIAN_FRONTEND=noninteractive apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt install -y gnome-terminal
