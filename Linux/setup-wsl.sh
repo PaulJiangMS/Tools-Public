@@ -31,3 +31,7 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm ~/miniconda3/miniconda.sh
 source ~/miniconda3/bin/activate
 conda init --all
+
+# Install gnome-terminal
+sudo apt update
+sudo apt install gnome-terminal
