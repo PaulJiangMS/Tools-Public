@@ -38,19 +38,19 @@ sudo mkdir -p /miniconda3
 sudo wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda3/miniconda.sh
 sudo bash /miniconda3/miniconda.sh -b -u -p /miniconda3
 sudo rm /miniconda3/miniconda.sh
-source /miniconda3/bin/activate
 
 # Enable conda for all users
 echo "Enable Miniconda for users..."
 CONDA_DIR="/miniconda3"
 echo "export PATH=\$PATH:$CONDA_DIR/bin" | sudo tee /etc/profile.d/miniconda.sh > /dev/null
 sudo chmod +x /etc/profile.d/miniconda.sh
-source /etc/profile
-$CONDA_DIR/bin/conda init
 
-# Install gnome-terminal
-echo "Installing gnome-terminal..."
-sudo DEBIAN_FRONTEND=noninteractive apt update -y
-sudo DEBIAN_FRONTEND=noninteractive apt install -y gnome-terminal
+# Add conda to sudo's secure_path without overwriting the original value
+echo "Appending Conda path to sudo's secure_path..."
+sudo sed -i "/^Defaults    secure_path/ s|$|:$CONDA_DIR/bin|" /etc/sudoers
+
+# Conda initialization for the current shell session
+source /miniconda3/bin/activate
+$CONDA_DIR/bin/conda init
 
 echo "Installation complete!"
