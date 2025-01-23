@@ -47,7 +47,9 @@ sudo chmod +x /etc/profile.d/miniconda.sh
 
 # Add conda to sudo's secure_path without overwriting the original value
 echo "Appending Conda path to sudo's secure_path..."
-sudo bash -c "echo 'Defaults    secure_path=\$(sudo grep ^Defaults\ secure_path /etc/sudoers | cut -d= -f2):$CONDA_DIR/bin' >> /etc/sudoers"
+current_secure_path=$(sudo grep -E '^Defaults\s+secure_path' /etc/sudoers | cut -d= -f2)
+current_secure_path=$(echo $current_secure_path | sed 's/[" ]//g')
+echo "Defaults    secure_path=$current_secure_path:/miniconda3/bin" | sudo tee /etc/sudoers.d/conda_path > /dev/null
 
 # Conda initialization for the current shell session
 source /miniconda3/bin/activate
