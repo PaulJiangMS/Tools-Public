@@ -34,13 +34,14 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y jq
 
 # Install Miniconda
 echo "Installing Miniconda..."
-mkdir -p /miniconda3
-wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda3/miniconda.sh
-bash /miniconda3/miniconda.sh -b -u -p /miniconda3
-rm /miniconda3/miniconda.sh
+sudo mkdir -p /miniconda3
+sudo wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda3/miniconda.sh
+sudo bash /miniconda3/miniconda.sh -b -u -p /miniconda3
+sudo rm /miniconda3/miniconda.sh
 source /miniconda3/bin/activate
 
 # Enable conda for all users
+echo "Enable Miniconda for users..."
 CONDA_DIR="/miniconda3"
 echo "export PATH=\$PATH:$CONDA_DIR/bin" | sudo tee /etc/profile.d/miniconda.sh > /dev/null
 sudo chmod +x /etc/profile.d/miniconda.sh
