@@ -34,12 +34,18 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y jq
 
 # Install Miniconda
 echo "Installing Miniconda..."
-mkdir -p ~/miniconda3
-wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm ~/miniconda3/miniconda.sh
-source ~/miniconda3/bin/activate
-~/miniconda3/bin/conda init --all
+mkdir -p /miniconda3
+wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda3/miniconda.sh
+bash /miniconda3/miniconda.sh -b -u -p /miniconda3
+rm /miniconda3/miniconda.sh
+source /miniconda3/bin/activate
+
+# Enable conda for all users
+CONDA_DIR="/miniconda3"
+echo "export PATH=\$PATH:$CONDA_DIR/bin" | sudo tee /etc/profile.d/miniconda.sh > /dev/null
+sudo chmod +x /etc/profile.d/miniconda.sh
+source /etc/profile
+$CONDA_DIR/bin/conda init
 
 # Install gnome-terminal
 echo "Installing gnome-terminal..."
