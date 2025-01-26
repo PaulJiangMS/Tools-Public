@@ -55,4 +55,7 @@ echo "Defaults    secure_path=$current_secure_path:/miniconda3/bin" | sudo tee /
 source /miniconda3/bin/activate
 $CONDA_DIR/bin/conda init
 
+# Init conda for root
+sudo $CONDA_DIR/bin/conda init
+
 echo "Installation complete!"
