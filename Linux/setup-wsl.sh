@@ -22,6 +22,11 @@ sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s http
 sudo chmod +x /usr/local/bin/docker-compose
 sudo chmod 666 /var/run/docker.sock
 
+# Install zip
+echo "Installing zip..."
+sudo DEBIAN_FRONTEND=noninteractive apt update -y
+sudo DEBIAN_FRONTEND=noninteractive apt install -y zip
+
 # Install Git
 echo "Installing Git..."
 sudo DEBIAN_FRONTEND=noninteractive apt update -y
