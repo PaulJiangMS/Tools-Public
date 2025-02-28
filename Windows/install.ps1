@@ -12,3 +12,6 @@ winget install --id Snipaste.Snipaste -e --source winget
 
 echo "Install Bing Wallpaper..."
 winget install --id Microsoft.BingWallpaper -e --source winget
+
+echo "Install azd..."
+winget install microsoft.azd
